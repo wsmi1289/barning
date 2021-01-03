@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @ingredient.name
+p
+  strong Description:
+  = @ingredient.description
+p
+  strong Status:
+  = @ingredient.status
+p
+  strong User:
+  = @ingredient.user
+
+=> link_to 'Edit', edit_ingredient_path(@ingredient)
+'|
+=< link_to 'Back', ingredients_path

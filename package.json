@@ -1,0 +1,22 @@
+{
+  "name": "barning",
+  "private": true,
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.2.1",
+    "buefy": "^0.9.4",
+    "slim-lang-loader": "https://github.com/GetSilverfin/slim-lang-loader",
+    "turbolinks": "^5.2.0",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "vue-turbolinks": "^2.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "vue-template-compiler-loader": "^1.0.4",
+    "webpack-dev-server": "^3.11.1"
+  }
+}
