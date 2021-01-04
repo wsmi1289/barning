@@ -15,7 +15,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 #########################
 # added by me
 #########################
-
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'slim-rails'
 gem 'devise'
 

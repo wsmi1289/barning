@@ -1,8 +1,15 @@
 class RecipesController < ApplicationController
+  include Permitted::RecipeParams
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     @recipes = Recipe.all
+    respond_to do |format|
+      format.json {
+        render json: @recipes, include: params[:include], fields: params[:fields]
+      }
+      format.html
+    end
   end
 
   def show
@@ -52,9 +59,5 @@ class RecipesController < ApplicationController
   private
     def set_recipe
       @recipe = Recipe.find(params[:id])
-    end
-
-    def recipe_params
-      params.require(:recipe).permit(:name, :description, :user_id)
     end
 end

@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+  include Permitted::IngredientParams
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -52,9 +53,5 @@ class IngredientsController < ApplicationController
   private
     def set_ingredient
       @ingredient = Ingredient.find(params[:id])
-    end
-
-    def ingredient_params
-      params.require(:ingredient).permit(:name, :description, :status, :user_id)
     end
 end

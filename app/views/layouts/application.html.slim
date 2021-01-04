@@ -9,8 +9,8 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'main'
     = javascript_pack_tag 'main'
-  body class="#{controller.controller_name}"
-    #main
+  body
+    #main class="#{controller.controller_name}"
       = render 'layouts/nav'
       .notice = notice
       .alert = alert

@@ -1,0 +1,32 @@
+template
+  .tile.box.is-child.is-4
+    article.media :key="recipe.id" v-for="recipe in recipes"
+      figure.media-left
+        p.image.is-128x128
+          b-image [
+          	:src="recipe.image"
+            alt="recipe.name"
+          ]
+      .media-content
+        .content
+        	.level
+        		.level-left
+        			.level-item
+			        	h3.title.is-3
+			        		| {{recipe.name}}
+			        .level-item.pt-3
+			        	h6.subtitle.is-6
+			        		| {{recipe.user.full_name}}
+        	p
+        		| {{recipe.directions}}
+        nav.level.is-mobile
+	        .level-left
+	          .level-item
+	            span.icon.is-dark
+	              i.fas.fa-reply
+	          .level-item
+	            span.icon.is-dark
+	              i.fas.fa-edit
+	          .level-item
+	            span.icon.is-dark
+	              i.fas.fa-trash-alt

@@ -8,7 +8,10 @@ p
   = @recipe.description
 p
   strong User:
-  = @recipe.user
+  = @recipe.user.full_name
+p
+  strong image:
+  = image_tag @recipe.image
 
 => link_to 'Edit', edit_recipe_path(@recipe)
 '|

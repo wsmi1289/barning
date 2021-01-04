@@ -1,9 +1,7 @@
-<script>
-	import template from '../../views/layouts/_nav.html.slim';
+import template from '../../views/layouts/_nav.html.slim';
 
-	// export const NavBar = {
-	//   name: 'nav-bar',
-	//   mixins: [template],
-	//   mounted () {}
-	// }
-	</
+export const NavBar = {
+  name: 'nav-bar',
+  mixins: [template],
+  mounted () {}
+}
