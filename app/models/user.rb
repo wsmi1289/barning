@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Params::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

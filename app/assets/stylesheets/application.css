@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+[v-cloak] {
+	display: none !important;
+}

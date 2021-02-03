@@ -1,15 +1,15 @@
-template
-	b-navbar
-		template slot="brand"
-			b-navbar-item :to="{ path: '/' }"
-				= image_tag('chef-hat.png')
-		template slot="start"
-			b-navbar-item href="/ingredients" Pantry
-			b-navbar-item href="/recipes" Recipes
-		template slot="end"
-			b-navbar-item tag="div"
-				.buttons
-					a.button.is-primary
-						strong Sign Up
-					a.button.is-light
-						strong Log In
+nav.navbar role="navigation" aria-label="main navigation"
+	.navbar-brand
+		a.navbar-item href="/"
+			img src="/assets/chef-hat.png"
+		a.navbar-burger role="button" aria-label="menu" aria-expanded="false"
+			span aria-hidden="true"
+			span aria-hidden="true"
+			span aria-hidden="true"
+	.navbar-menu
+		.navbar-start
+		.navbar-end
+			a.navbar-item.button.is-primary href="/users/sign_up"
+				strong Sign Up
+			a.navbar-item.button.is-light href="/users/sign_in"
+				strong Log In				

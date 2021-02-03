@@ -1,3 +1,4 @@
+- notice = "Hello world"
 doctype html
 html
   head
@@ -9,9 +10,11 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'main'
     = javascript_pack_tag 'main'
+    script src="https://kit.fontawesome.com/e323f41aa7.js" crossorigin="anonymous"
+
   body
-    #main class="#{controller.controller_name}"
-      = render 'layouts/nav'
-      .notice = notice
-      .alert = alert
-      = yield
+    section.section#main class="#{controller.controller_name}"
+      nav-bar
+      = render 'layouts/flash_msgs'
+      .container
+        = yield

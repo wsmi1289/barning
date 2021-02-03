@@ -1,0 +1,5 @@
+.container.flash-msgs
+	- flash.each do |type, msg|
+		div :class="flashClass('#{type}')"
+			button.delete @click="removeFlashMsg"
+			= msg
