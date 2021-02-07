@@ -1,0 +1,7 @@
+.field
+  label.label id="'ingredient-' + key"
+  auto-complete aria-labelled-by="'ingredient-' + key"
+.field
+  label.label for="'amount-' + key"
+  .control
+    input.input id="'amount-' + key" type="number" v-model.="recipe.directions"

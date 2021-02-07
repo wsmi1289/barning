@@ -1,0 +1,37 @@
+.autocomplete [
+    role="combobox"
+    aria-haspopup="listbox"
+    aria-owns="autocomplete-results"
+    :aria-expanded="isOpen"
+  ]
+    .control
+      input.input [
+        type="text"
+        @input="onChange"
+        v-model="search"
+        @keydown.down="onArrowDown"
+        @keydown.up="onArrowUp"
+        @keydown.enter="onEnter"
+        role="searchbox"
+        aria-autocomplete="list"
+        aria-controls="autocomplete-results"
+        :aria-labelledby="ariaLabelledBy"
+        :aria-activedescendant="activedescendant"
+      ]
+
+      ul#autocomplete-results.autocomplete-results [
+        v-show="isOpen"
+        role="listbox"
+      ]
+      li.loading v-if="isLoading" Loading results...
+      li [
+          v-else
+          v-for="(result, i) in results"
+          :key="i"
+          @click="setResult(result)"
+          class="autocomplete-result"
+          :class="{ 'is-active': isSelected(i) }"
+          role="option"
+          :id="getId(i)"
+          :aria-selected="isSelected(i)"
+        ] {{ result }}

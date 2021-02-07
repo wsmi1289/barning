@@ -4,6 +4,12 @@ class IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.all
+    respond_to do |format|
+      format.json {
+        render json: @ingredients, include: params[:include], fields: params[:fields]
+      }
+      format.html
+    end
   end
 
   def show

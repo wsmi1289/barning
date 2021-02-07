@@ -53,17 +53,13 @@ ActiveRecord::Schema.define(version: 2021_01_03_185309) do
     t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
-  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+  create_table "recipe_ingredients", id: false, force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "ingredient_id", null: false
-    t.bigint "recipes_id"
-    t.bigint "ingredients_id"
     t.decimal "amount"
     t.integer "scale"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredients_id"], name: "index_ingredients_recipes_on_ingredients_id"
-    t.index ["recipes_id"], name: "index_ingredients_recipes_on_recipes_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -93,7 +89,5 @@ ActiveRecord::Schema.define(version: 2021_01_03_185309) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ingredients", "users"
-  add_foreign_key "ingredients_recipes", "ingredients", column: "ingredients_id"
-  add_foreign_key "ingredients_recipes", "recipes", column: "recipes_id"
   add_foreign_key "recipes", "users"
 end

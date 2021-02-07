@@ -1,5 +1,8 @@
-h1 New recipe
+.columns
+	.column.is-one-quarter
+	.column.is-half
+		h1.title New recipe
+		recipe-form :recipe="{}"
 
-== render 'form'
+a.button href=recipes_path Back
 
-= link_to 'Back', recipes_path

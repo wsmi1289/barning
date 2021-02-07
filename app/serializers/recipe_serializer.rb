@@ -4,7 +4,7 @@ class RecipeSerializer < ActiveModel::Serializer
   belongs_to :user
   # has_many :ingredients
 
-  def image
-    rails_blob_path(object.image, only_path: true)
-  end
+  # def image
+  #   rails_blob_path(object.image, only_path: true)
+  # end
 end

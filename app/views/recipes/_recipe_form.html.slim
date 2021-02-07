@@ -1,0 +1,33 @@
+form @submit.prevent="handleRecipeSubmit"
+  .field
+    label.label for="name"
+    .control
+      input.input#name type="text" v-model="recipe.name"
+  .field
+    label.label for="description"
+    .control
+      textarea.textarea#description type="textarea" v-model="recipe.description"
+  .field
+    label.label for="directions"
+    .control
+      textarea.textarea#directions type="textarea" v-model="recipe.directions"
+  .file
+    label.file-label for="image"
+      input.file-input#image type="file" @change="handleFileUpload"
+      span.file-cta
+        span.file-icon
+          i.fas.fa-upload
+        span.file-label Choose a file…
+  recipe-ingredient [
+    v-for="ingredients in recipe.ingredients"
+    :key="ingredient.id"
+    :ingrdient="ingredient"
+    :recipe="recipe"
+  ]
+  .field
+    label.label id="'ingredient-' + key"
+    auto-complete [
+      aria-labelled-by="'ingredient-' + key"
+      :items="items"
+    ]
+

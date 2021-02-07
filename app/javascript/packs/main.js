@@ -4,7 +4,9 @@ import axios from 'axios';
 
 import Buefy from 'buefy'
 import NavBar from './components/navbar.js'
+import AutoComplete from './components/autoComplete.js'
 import RecipeListing from './components/recipeListing.js'
+import RecipeForm from './components/recipeForm.js'
 
 import 'buefy/dist/buefy.css'
 
@@ -20,7 +22,12 @@ document.addEventListener('turbolinks:load', () => {
     mounted: function () {
       this.getRecipes();
     },
-    components: { 'nav-bar': NavBar, 'recipe-listing': RecipeListing },
+    components: {
+      'auto-complete': AutoComplete,
+      'nav-bar': NavBar,
+      'recipe-listing': RecipeListing,
+      'recipe-form': RecipeForm,
+     },
     methods: {
       flashClass: function (type) {
         var classes = 'notification is-light ';
