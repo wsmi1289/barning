@@ -1,5 +1,5 @@
 .tile.box.is-child.is-4
-  article.media
+  article.media v-if="!editing"
     figure.media-left
       p.image.is-128x128
         b-image [
@@ -24,8 +24,9 @@
             span.icon.is-dark
               i.fas.fa-reply
           .level-item
-            span.icon.is-dark
+            span.icon.is-dark role="button" @click="editing = !editing"
               i.fas.fa-edit
           .level-item
             span.icon.is-dark
               i.fas.fa-trash-alt
+  recipe-form v-if="editing" :recipe="recipe"

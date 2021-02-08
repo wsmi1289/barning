@@ -19,15 +19,22 @@ form @submit.prevent="handleRecipeSubmit"
           i.fas.fa-upload
         span.file-label Choose a file…
   recipe-ingredient [
-    v-for="ingredients in recipe.ingredients"
-    :key="ingredient.id"
-    :ingrdient="ingredient"
-    :recipe="recipe"
-  ]
+      v-for="recipe_ingredient in recipe.recipe_ingredients"
+      :key="recipe_ingredient.id"
+      :recipe_ingredient="recipe_ingredient"
+    ]
   .field
+    button.button v-show="!addingIngredient" @click.prevent.stop="addingIngredient = !addingIngredient" Add ingredient
+  .field v-show="addingIngredient"
     label.label id="'ingredient-' + key"
     auto-complete [
+      v-if="addingIngredient"
+      :isAsync="true"
+      :asyncParams="{ resource: '/ingredients.json', params: {}, search_term: 'query' }"
       aria-labelled-by="'ingredient-' + key"
-      :items="items"
+      :filterable="filterMethod"
+      @selectedOption="addIngredient($event)"
     ]
+  .field
+    button.button type="submit" Save
 

@@ -6,6 +6,7 @@ import Buefy from 'buefy'
 import NavBar from './components/navbar.js'
 import AutoComplete from './components/autoComplete.js'
 import RecipeListing from './components/recipeListing.js'
+import RecipeIngredient from './components/recipeIngredient.js'
 import RecipeForm from './components/recipeForm.js'
 
 import 'buefy/dist/buefy.css'
@@ -27,7 +28,8 @@ document.addEventListener('turbolinks:load', () => {
       'nav-bar': NavBar,
       'recipe-listing': RecipeListing,
       'recipe-form': RecipeForm,
-     },
+      'recipe-ingredient': RecipeIngredient,
+    },
     methods: {
       flashClass: function (type) {
         var classes = 'notification is-light ';
@@ -54,6 +56,7 @@ document.addEventListener('turbolinks:load', () => {
       getRecipes: function () {
         axios.get('/recipes.json').then(response => {
           this.recipes = response.data;
+          console.log(this.recipes)
         })
       },
 

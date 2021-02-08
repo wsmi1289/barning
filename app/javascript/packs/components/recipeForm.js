@@ -3,10 +3,23 @@ import axios from 'axios';
 
 export default Vue.component('recipe-form', {
   template: require("html-loader!./../../../views/recipes/_recipe_form.html.slim"),
-  props: ['recipe'],
+  props: {
+    recipe: {
+      type: Object,
+      default: function () {
+        return {
+          id: null,
+          recipe_ingredients: []
+        }
+      }
+    }
+  },
 
   data: function () {
-    return { ingredients: [], items: [] };
+    return {
+      addingIngredient: false,
+      ingredients: [],
+    };
   },
 
   mounted: function () {
@@ -14,12 +27,20 @@ export default Vue.component('recipe-form', {
   },
 
   methods: {
+    addIngredient: function (event) {
+      console.log(event)
+      this.recipe.recipe_ingredients.push({
+        ingredient_id: event.id,
+        name: event.name
+      });
+      this.addingIngredient = false;
+    },
+
+    filterMethod: function (item) { return item.name },
+
     getIngredients: function () {
       axios.get('/ingredients.json').then( function (response) {
         this.ingredients = response.data;
-        this.items = response.data.map(function (item) {
-          return item.name;
-        })
       }.bind(this))
     },
 
@@ -28,7 +49,12 @@ export default Vue.component('recipe-form', {
   	},
 
   	handleRecipeSubmit: function (e) {
-  		console.log('submitting recipe: ', e);
+      // console.log('submitting recipe: ', e);
+      // var ingredients = _.pick(this.recipe, 'ingredients');
+
+      axios.put('/recipes/' + this.recipe.id + '.json', this.recipe).then( function (resp) {
+        console.log(resp)
+      })
   	}
   }
 });

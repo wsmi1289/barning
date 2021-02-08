@@ -1,7 +1,15 @@
-.field
-  label.label id="'ingredient-' + key"
-  auto-complete aria-labelled-by="'ingredient-' + key"
-.field
-  label.label for="'amount-' + key"
-  .control
-    input.input id="'amount-' + key" type="number" v-model.="recipe.directions"
+.field.is-group
+	.field.is-horizontal
+		.field-label.is-normal
+	  	label.label> :for="'amount-' + recipe_ingredient.id" {{amountLabel}}
+		.field-body
+	  	.field.is-narrow
+			  .control
+			    input.input :id="'amount-' + recipe_ingredient.id" type="number" v-model="recipe_ingredient.amount"
+	.field.is-horizontal
+		.field-label.is-normal
+	  	label.label> :for="'scale-' + recipe_ingredient.id" Scale
+		.field-body
+	  	.field.is-narrow
+			  .control
+			    input.input :id="'scale-' + recipe_ingredient.id" type="number" v-model="recipe_ingredient.scale"

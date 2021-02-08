@@ -1,37 +1,36 @@
 .autocomplete [
-    role="combobox"
     aria-haspopup="listbox"
     aria-owns="autocomplete-results"
+    role="combobox"
     :aria-expanded="isOpen"
   ]
     .control
       input.input [
-        type="text"
-        @input="onChange"
-        v-model="search"
-        @keydown.down="onArrowDown"
-        @keydown.up="onArrowUp"
-        @keydown.enter="onEnter"
-        role="searchbox"
         aria-autocomplete="list"
         aria-controls="autocomplete-results"
+        role="searchbox"
+        type="text"
+        v-model="search"
         :aria-labelledby="ariaLabelledBy"
         :aria-activedescendant="activedescendant"
+        @input="onChange"
+        @keydown.down="onArrowDown"
+        @keydown.up="onArrowUp"
+        @keydown.enter.self="setResult(results[arrowCounter])"
       ]
 
       ul#autocomplete-results.autocomplete-results [
-        v-show="isOpen"
         role="listbox"
+        v-show="isOpen"
       ]
-      li.loading v-if="isLoading" Loading results...
-      li [
-          v-else
-          v-for="(result, i) in results"
-          :key="i"
-          @click="setResult(result)"
-          class="autocomplete-result"
-          :class="{ 'is-active': isSelected(i) }"
-          role="option"
-          :id="getId(i)"
-          :aria-selected="isSelected(i)"
-        ] {{ result }}
+        li.loading v-if="loading" Loading results...
+        li.autocomplete-result [
+            v-else
+            role="option"
+            v-for="(result, i) in results"
+            :aria-selected="isSelected(i)"
+            :class="{ 'is-active': isSelected(i) }"
+            @click="setResult(result)"
+            :id="getId(i)"
+            :key="i"
+          ] {{ filterable(result) }}
