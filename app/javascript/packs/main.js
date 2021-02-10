@@ -3,6 +3,8 @@ import Vue from 'vue/dist/vue.esm'
 import axios from 'axios';
 
 import Buefy from 'buefy'
+import Model from '../models/model.js'
+import Recipe from '../models/recipe.js'
 import NavBar from './components/navbar.js'
 import AutoComplete from './components/autoComplete.js'
 import RecipeListing from './components/recipeListing.js'

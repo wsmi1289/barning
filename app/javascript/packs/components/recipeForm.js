@@ -1,5 +1,6 @@
-import Vue from 'vue/dist/vue.esm'
 import axios from 'axios';
+import Vue from 'vue/dist/vue.esm'
+import Recipe from '../../models/recipe.js'
 
 export default Vue.component('recipe-form', {
   template: require("html-loader!./../../../views/recipes/_recipe_form.html.slim"),
@@ -30,6 +31,8 @@ export default Vue.component('recipe-form', {
     addIngredient: function (event) {
       console.log(event)
       this.recipe.recipe_ingredients.push({
+        amount: null,
+        scale: 1,
         ingredient_id: event.id,
         name: event.name
       });
@@ -51,10 +54,20 @@ export default Vue.component('recipe-form', {
   	handleRecipeSubmit: function (e) {
       // console.log('submitting recipe: ', e);
       // var ingredients = _.pick(this.recipe, 'ingredients');
-
-      axios.put('/recipes/' + this.recipe.id + '.json', this.recipe).then( function (resp) {
+      // console.log(this.recipe)
+      var recipe = new Recipe(this.recipe);
+      console.log(recipe)
+      recipe.set({recipe_ingredients_attributes: this.recipe.recipe_ingredients})
+      console.log(recipe)
+      recipe.save().then( function (resp) {
         console.log(resp)
       })
+      // recipe.save({
+      //   recipe_ingredients_attributes: this.recipe.recipe_ingredients
+      // }).then( function (resp) {
+      //   console.log(resp)
+      // })
+      // axios.put('/recipes/' + this.recipe.id + '.json', this.recipe)
   	}
   }
 });

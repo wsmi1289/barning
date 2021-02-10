@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_01_03_185309) do
     t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
-  create_table "recipe_ingredients", id: false, force: :cascade do |t|
+  create_table "recipe_ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "ingredient_id", null: false
     t.decimal "amount"
