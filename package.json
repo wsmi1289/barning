@@ -8,15 +8,19 @@
     "@rails/webpacker": "5.2.1",
     "axios": "^0.21.1",
     "buefy": "^0.9.4",
+    "dotenv": "^9.0.2",
     "slim-lang-loader": "https://github.com/GetSilverfin/slim-lang-loader",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
+    "vue-router": "^3.5.1",
     "vue-template-compiler": "^2.6.12",
-    "vue-turbolinks": "^2.2.0"
+    "vue-turbolinks": "^2.2.0",
+    "vuex": "^3.6.2"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "dotenv-webpack": "^7.0.2",
     "vue-template-compiler-loader": "^1.0.4",
     "webpack-dev-server": "^3.11.1"
   }

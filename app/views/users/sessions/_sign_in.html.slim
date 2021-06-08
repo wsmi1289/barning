@@ -1,0 +1,9 @@
+form.sign-in @submit.prevent="signin"
+	.field
+		label Email
+		input type="email" id="user_email" name="user[email]" v-model="email"
+	.field
+		label Password
+		input type="password" id="user_password" name="user[password]" v-model="password"
+	.actions
+		input type="submit"

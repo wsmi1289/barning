@@ -1,0 +1,32 @@
+.tile.is-parent
+	article.tile.is-child
+		form v-if="editing"
+			input v-model="recipe.name"
+			input v-model="recipe.description"
+			table.table
+				thead
+					th Ingredient
+					th Amount
+					th Scale
+					th Destroy
+				tbody
+					recipe-ingredient v-for="(ri, index) in recipe.recipe_ingredients" :key="index" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
+			textarea v-model="recipe.directions"
+			button @click="addRecipeIngredient" New Ingredient
+		div v-else=""
+			p.title
+				| {{recipe.name}}
+			p.subtitle
+				| {{recipe.description}}
+			.content
+				table.table
+					thead
+						th Ingredient
+						th Amount
+					tbody
+						recipe-ingredient v-for="ri in recipe.recipe_ingredients" :key="ri.id" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
+			.content
+				| {{recipe.directions}}
+		.card-footer
+			a.card-footer-item role="button" @click="editing = !editing" Edit
+			a.card-footer-item role="button" @click="destroyRecipe" Destroy

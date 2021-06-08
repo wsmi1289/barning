@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   resources :recipes
   resources :ingredients
-  devise_for :users
+  namespace :users do
+    resources :sessions, only: [:new]
+  end
 end

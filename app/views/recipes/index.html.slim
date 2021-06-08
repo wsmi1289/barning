@@ -1,5 +1,9 @@
-h1.title Listing recipes
-.tile.is-ancestor#recipes v-cloak=""
-	recipe-listing v-for="recipe in recipes" :key="recipe.id" :recipe="recipe"
-
-a.button href=new_recipe_path New Recipe
+div
+  h1 Recipes
+  .tile.is-ancestor
+    recipe [
+      v-for="(recipe, index) in recipes"
+      :key="recipe.id"
+      :self="recipe"
+      @removeRecipe="removeRecipe(index)"
+    ]

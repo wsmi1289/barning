@@ -1,63 +1,21 @@
 class RecipesController < ApplicationController
-  include Permitted::RecipeParams
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit]
 
   def index
-    @recipes = Recipe.all
-    respond_to do |format|
-      format.json {
-        render json: @recipes, include: params[:include], fields: params[:fields]
-      }
-      format.html
-    end
   end
 
   def show
   end
 
   def new
-    @recipe = Recipe.new
   end
 
   def edit
   end
 
-  def create
-    @recipe = Recipe.new(recipe_params)
-
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to @recipe, success: 'Recipe was successfully created.' }
-        format.json { render json: @recipe, include: params[:include], fields: params[:fields]}
-      else
-        # format.html { render :new }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
-        format.json { render json: @recipe, status: :ok, location: @recipe }
-      else
-        format.html { render :edit }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @recipe.destroy
-    respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
+
+  def set_recipe
+    @recipe = api_get('v1/recipes')
+  end
 end

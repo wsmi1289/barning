@@ -14,7 +14,6 @@ html
     script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
   body
     section.section#main class="#{controller.controller_name}"
-      nav-bar
       = render 'layouts/flash_msgs'
       .container
-        = yield
+        router-view
