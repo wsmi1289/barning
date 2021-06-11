@@ -1,16 +1,17 @@
-tr v-if="editing"
+tr
   td
-    ingredient v-model="recipeIngredient.ingredient_id" :editing="editing" :ingredient="ingredient"
-  td
-    input type="number" step="0.01" v-model.number="recipeIngredient.amount"
-  td
-    select v-model="recipeIngredient.scale"
+    ingredient [
+      v-model="ri.ingredient_id"
+      :editing="editing"
+      :name="ri.ingredient.name"
+    ]
+  td v-if="editing"
+    input type="number" step="0.01" v-model.number="ri.amount"
+  td v-if="editing"
+    select v-model="ri.scale"
       option v-for="opt in scales" :value="opt.value" {{opt.value}}
-  td
+  td v-if="editing"
     button @click="destroyRecipeIngredient($event)" Destroy
-tr v-else=""
-  td
-    ingredient v-model="recipeIngredient.ingredient_id" :editing="editing" :ingredient="ingredient"
-  td
+  td v-else=""
     | {{quantity}}
 

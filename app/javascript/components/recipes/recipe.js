@@ -7,15 +7,14 @@ import { recipeIngredient } from '../recipe_ingredients/recipe_ingredient'
 const recipe = Vue.component('recipe', {
   template: require("html-loader!./../../../views/recipes/_recipe.html.slim"),
 
-  props: ['self'],
+  props: ['recipe'],
 
   components: { 'recipe-ingredient': recipeIngredient },
 
   data: function () {
     return {
       editing: false,
-      recipe: this.self,
-      recipeIngredients: this.self.recipe_ingredients
+      recipeIngredients: this.recipe.recipe_ingredients
     }
   },
 
@@ -48,7 +47,7 @@ const recipe = Vue.component('recipe', {
     },
 
     recipeData: function () {
-      this.recipe.recipe_ingredients_attributes = this.recipeIngredients;
+      this.recipe.recipe_ingredients_attributes = this.recipeIngredients
       return _.pick(this.recipe, ['id', 'name', 'description', 'directions', 'recipe_ingredients_attributes']);
     },
 

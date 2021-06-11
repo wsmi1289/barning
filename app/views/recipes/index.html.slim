@@ -1,9 +1,10 @@
 div
   h1 Recipes
+  input @change="searchRecipes($event)"
   .tile.is-ancestor
     recipe [
       v-for="(recipe, index) in recipes"
       :key="recipe.id"
-      :self="recipe"
+      :recipe="recipe"
       @removeRecipe="removeRecipe(index)"
     ]

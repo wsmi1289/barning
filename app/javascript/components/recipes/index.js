@@ -34,6 +34,21 @@ const recipes = Vue.component('recipes', {
       this.$store.commit('setError', 'You have no recipes yet!');
     },
 
+    searchRecipes: function (event) {
+      var query = event.target.value;
+      this.recipes.filter(function (recipe) {
+        recipe.searchScore = 0;
+        if (recipe.name.includes(query)) { recipe.searchScore += 10; }
+        if (recipe.description.includes(query)) { recipe.searchScore += 5; }
+        if (recipe.directions.includes(query)) { recipe.searchScore += 2; }
+        recipe.recipe_ingredients.forEach(function (ri) {
+          if (ri.ingredient.name.includes(query)) { recipe.searchScore += 2; }
+        })
+        return recipe.searchScore > 0;
+      });
+      this.recipes = this.recipes.sort(function (a, b) { return b.searchScore - a.searchScore; })
+    },
+
     setIngredients: function (response) { this.$store.commit('setIngredients', response.data) },
 
     setRecipes: function (response) { this.recipes = response.data; },

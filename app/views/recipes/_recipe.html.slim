@@ -12,7 +12,7 @@
 					th Scale
 					th Destroy
 				tbody
-					recipe-ingredient v-for="(ri, index) in recipeIngredients" :key="index" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
+					recipe-ingredient v-for="ri in recipeIngredients" :key="ri.id" :ri="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
 			textarea rows="5" v-model="recipe.directions"
 			button @click="addRecipeIngredient" Add Ingredient
 		div v-else=""
@@ -26,7 +26,7 @@
 						th Ingredient
 						th Amount
 					tbody
-						recipe-ingredient v-for="ri in recipeIngredients" :key="ri.id" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
+						recipe-ingredient v-for="ri in recipeIngredients" :key="ri.id" :ri="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
 			.content
 				| {{recipe.directions}}
 		.card-footer
