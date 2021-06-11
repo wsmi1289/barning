@@ -1,2 +1,5 @@
-span
-	| {{name}}
+div v-if="editing"
+	select :value="value" @input="$emit('input', $event.target.value)"
+		option v-for="ing in ingredients" :value="ing.id" {{ing.name}}
+div v-else=""
+	| {{ingredient.name}}

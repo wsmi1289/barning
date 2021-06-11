@@ -7,12 +7,16 @@ export const store = new Vuex.Store({
   state: {
     currentUser: null,
     error: null,
-    loading: false
+    ingredients: [],
+    loading: false,
+    scales: []
   },
   mutations: {
-    setUser: function (state, user) { state.currentUser = user },
-    setError: function (state, error) { state.error = error },
-    setLoading: function (state, loading) { state.loading = loading }
+    setUser: function (state, user) { state.currentUser = user; },
+    setError: function (state, error) { state.error = error; },
+    setIngredients: function (state, ingredients) { state.ingredients = ingredients; },
+    setLoading: function (state, loading) { state.loading = loading; },
+    setScales: function (state, scales) { state.scales = scales; },
   },
   actions: {},
   getters: {}

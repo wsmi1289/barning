@@ -20,26 +20,32 @@ Vue.use(TurbolinksAdapter)
 document.addEventListener('turbolinks:load', () => {
   new Vue({
     el: '#main',
+
     router: router,
+
     store: store,
+
     data: function () {
       return {
         api: plainApi,
         secureApi: secureApi,
       }
     },
+
     created: function () {
       if (!this.$store.state.currentUser && !this.loggingIn) {
         this.$router.push('users/sessions/new')
       }
     },
+
     computed: {
       loggingIn: function () { return this.$router.currentRoute.path === '/users/sessions/new'; },
     },
+
     methods: {
       removeFlashMsg: function (e) {
         this.$el.querySelector('.flash-msgs').removeChild(e.target.parentNode);
       }
-    },
+    }
   });
 })

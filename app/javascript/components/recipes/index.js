@@ -11,22 +11,36 @@ const recipes = Vue.component('recipes', {
 
   components: { recipe },
 
-  created: function () { this.loadRecipes() },
+  created: function () {
+    this.loadIgredients();
+    this.loadRecipes();
+    this.loadScales()
+  },
 
   methods: {
-    loadRecipes: function () {
-      secureApi.get('v1/recipes')
-        .then(this.setRecipes)
-        .catch(this.noRecipes)
+    loadIgredients: function () {
+      secureApi.get('v1/ingredients').then(this.setIngredients).catch(this.onError)
     },
 
-    setRecipes: function (response) { this.recipes = response.data; },
+    loadRecipes: function () {
+      secureApi.get('v1/recipes').then(this.setRecipes).catch(this.onError);
+    },
 
-    noRecipes: function (response) {
+    loadScales: function () {
+      secureApi.get('v1/scales').then(this.setScales).catch(this.onError);
+    },
+
+    onError: function (response) {
       this.$store.commit('setError', 'You have no recipes yet!');
     },
 
-    removeRecipe: function (index) { this.recipes.splice(index, 1); }
+    setIngredients: function (response) { this.$store.commit('setIngredients', response.data) },
+
+    setRecipes: function (response) { this.recipes = response.data; },
+
+    removeRecipe: function (index) { this.recipes.splice(index, 1); },
+
+    setScales: function (response) { this.$store.commit('setScales', response.data) },
   }
 })
 export { recipes }

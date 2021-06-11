@@ -1,7 +1,9 @@
 .tile.is-parent
 	article.tile.is-child
 		form v-if="editing"
+			label Name
 			input v-model="recipe.name"
+			label Description
 			input v-model="recipe.description"
 			table.table
 				thead
@@ -10,9 +12,9 @@
 					th Scale
 					th Destroy
 				tbody
-					recipe-ingredient v-for="(ri, index) in recipe.recipe_ingredients" :key="index" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
-			textarea v-model="recipe.directions"
-			button @click="addRecipeIngredient" New Ingredient
+					recipe-ingredient v-for="(ri, index) in recipeIngredients" :key="index" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
+			textarea rows="5" v-model="recipe.directions"
+			button @click="addRecipeIngredient" Add Ingredient
 		div v-else=""
 			p.title
 				| {{recipe.name}}
@@ -24,9 +26,10 @@
 						th Ingredient
 						th Amount
 					tbody
-						recipe-ingredient v-for="ri in recipe.recipe_ingredients" :key="ri.id" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
+						recipe-ingredient v-for="ri in recipeIngredients" :key="ri.id" :recipeIngredient="ri" :editing="editing" @rmRecipeIngredient="rmRecipeIngredient(index)"
 			.content
 				| {{recipe.directions}}
 		.card-footer
-			a.card-footer-item role="button" @click="editing = !editing" Edit
+			a.card-footer-item role="button" @click="editing = !editing" {{editing ? 'Cancel' : 'Edit'}}
+			a.card-footer-item role="button" v-if="editing" @click="saveRecipe" Save
 			a.card-footer-item role="button" @click="destroyRecipe" Destroy
