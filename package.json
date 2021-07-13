@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "buefy": "^0.9.4",
     "dotenv": "^9.0.2",
+    "jsonwebtoken": "^8.5.1",
     "slim-lang-loader": "https://github.com/GetSilverfin/slim-lang-loader",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",

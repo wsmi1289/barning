@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue.esm'
 import axios from 'axios';
 import { secureApi } from '../../packs/initializers/axios'
 import { recipe } from './recipe'
+import { JwtToken } from '../../packs/initializers/jwt_token'
 
 
 const recipes = Vue.component('recipes', {
@@ -12,6 +13,9 @@ const recipes = Vue.component('recipes', {
   components: { recipe },
 
   created: function () {
+    var tok = JwtToken.encode(this.$store.state.currentUser);
+    console.log(tok)
+
     this.loadIgredients();
     this.loadRecipes();
     this.loadScales()

@@ -2,6 +2,8 @@ import Vue from 'vue/dist/vue.esm'
 import axios from 'axios';
 import { plainApi } from '../../packs/initializers/axios'
 import { boolean } from '../../helpers/utils'
+import { JwtToken } from '../../packs/initializers/jwt_token'
+
 
 const signIn = Vue.component('sign-in', {
   template: require("html-loader!./../../../views/users/sessions/_sign_in.html.slim"),
@@ -18,6 +20,7 @@ const signIn = Vue.component('sign-in', {
     },
 
     signinSuccessful: function (response) {
+      console.log(response.data)
       localStorage.signedIn = true;
       this.$store.commit('setUser', response.data);
       this.$store.commit('setError', null);

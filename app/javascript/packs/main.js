@@ -5,6 +5,7 @@ import { store } from '../store'
 import { router } from '../router'
 
 import { secureApi, plainApi } from './initializers/axios'
+import { JwtToken } from './initializers/jwt_token'
 
 // import { signIn } from '../components/users/sign_in'
 import { boolean } from '../helpers/utils'
